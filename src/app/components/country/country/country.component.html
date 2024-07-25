@@ -1,0 +1,73 @@
+<div class="w-1/2 container mx-auto mt-4">
+  <h2 class="text-2xl mb-4">Countries</h2>
+  <!-- <a
+    routerLink="/countries/new"
+    class="bg-blue-500 text-white px-4 py-2 rounded"
+    >Add Country</a
+  > -->
+  <img
+    mat-raised-button
+    #tooltip="matTooltip"
+    matTooltip="Add Country"
+    routerLink="/countries/new"
+    class="bg-blue-500 text-white px-4 py-2 rounded w-15 h-10 hover:cursor-pointer"
+    src="/icons/plus.png"
+    alt="add icon"
+  />
+  <table class="min-w-full mt-4 bg-white">
+    <thead>
+      <tr>
+        <th class="py-2">ID</th>
+        <th class="py-2">Country</th>
+        <th class="py-2">Population</th>
+        <th class="py-2">Count</th>
+        <th class="py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (country of countries; track country.id; let idx=$index) {
+      <tr>
+        <td class="border px-4 py-2 w-1/6">{{ idx + 1 }}</td>
+        <td class="border px-4 py-2 w-1/4">{{ country.country }}</td>
+        <td class="border px-4 py-2 w-1/4">{{ country.population }}</td>
+        <td class="border px-4 py-2 w-1/4">
+          {{ stateCounts[country.id] || 0 }}
+        </td>
+        <td class="border px-10 py-2 w-1/4">
+          <div class="flex justify-center gap-x-3">
+            <!-- <a
+              [routerLink]="['/countries', country.id, 'edit']"
+              class="bg-green-500 text-white px-2 py-1 rounded"
+              >Edit</a
+            > -->
+            <img
+              mat-raised-button
+              #tooltip="matTooltip"
+              matTooltip="Edit"
+              src="/icons/edit.png"
+              alt=""
+              [routerLink]="['/countries', country.id, 'edit']"
+              class="bg-green-500 text-white px-2 py-1 rounded w-7 h-7 hover:cursor-pointer"
+            />
+            <!-- <button
+              (click)="deleteCountry(country.id!)"
+              class="bg-red-500 text-white px-2 py-1 rounded"
+            >
+              Delete
+            </button> -->
+            <img
+              mat-raised-button
+              #tooltip="matTooltip"
+              matTooltip="Delete"
+              (click)="deleteCountry(country.id!)"
+              class="bg-red-500 text-white px-2 py-1 rounded h-7 w-8 hover:cursor-pointer"
+              src="/icons/remove.png"
+              alt=""
+            />
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

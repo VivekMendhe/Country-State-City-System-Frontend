@@ -1,0 +1,13 @@
+<header class="bg-blue-600 py-4 px-8 text-white flex justify-between">
+  <!-- <a (click)="onHomeClick()" class="mr-4 text-lg cursor-pointer">Home</a> -->
+  <a (click)="onHomeClick()" class="mr-5 text-2xl cursor-pointer text-white">
+    <mat-icon mat-raised-button #tooltip="matTooltip" matTooltip="Menu"
+      >menu</mat-icon
+    >
+  </a>
+  <nav>
+    <a [routerLink]="'countries'" class="mr-4 text-lg">Countries</a>
+    <a [routerLink]="'states'" class="mr-4 text-lg">States</a>
+    <a [routerLink]="'cities'" class="text-lg">Cities</a>
+  </nav>
+</header>

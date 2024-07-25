@@ -1,0 +1,81 @@
+<div class="w-1/2 container mx-auto mt-4">
+  <h2 class="text-2xl mb-4">States</h2>
+  <!-- <a routerLink="/states/new" class="bg-blue-500 text-white px-4 py-2 rounded"
+    >Add State</a
+  > -->
+  <img
+    mat-raised-button
+    #tooltip="matTooltip"
+    matTooltip="Add State"
+    routerLink="/states/new"
+    class="bg-blue-500 text-white px-4 py-2 rounded w-15 h-10 hover:cursor-pointer"
+    src="/icons/plus.png"
+    alt="add icon"
+  />
+  <table class="min-w-full mt-4 bg-white">
+    <thead>
+      <tr>
+        <th class="py-2">ID</th>
+        <th class="py-2">State</th>
+        <th class="py-2">Country</th>
+        <th class="py-2">Count</th>
+        <th class="py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (state of states; track state.id; let idx=$index) {
+      <tr [ngClass]="{ 'bg-yellow-100': state.id === selectedStateId }">
+        <td class="border px-4 py-2 w-1/6">{{ idx + 1 }}</td>
+        <td class="border px-4 py-2 w-1/4">{{ state.state }}</td>
+
+        <!-- <td class="border px-4 py-2 w-1/4">
+          {{ getCountryName(state.countryId) }}
+        </td> -->
+
+        <td class="border px-4 py-2 w-1/4">
+          <a [routerLink]="['/countries']" class="">
+            {{ getCountryName(state.countryId) }}
+          </a>
+        </td>
+        <td class="border px-4 py-2 w-1/4">{{ getCityCount(state.state) }}</td>
+        <td class="border px-10 py-2 w-1/4">
+          <div class="flex justify-center gap-x-3">
+            <!-- <a
+              [routerLink]="['/states', state.id, 'edit']"
+              class="bg-green-500 text-white px-2 py-1 rounded"
+              >Edit</a
+            > -->
+
+            <img
+              mat-raised-button
+              #tooltip="matTooltip"
+              matTooltip="Edit"
+              src="/icons/edit.png"
+              alt=""
+              [routerLink]="['/states', state.id, 'edit']"
+              class="bg-green-500 text-white px-2 py-1 rounded w-7 h-7 hover:cursor-pointer"
+            />
+
+            <!-- <button
+              (click)="deleteState(state.id!)"
+              class="bg-red-500 text-white px-2 py-1 rounded"
+            >
+              Delete
+            </button> -->
+
+            <img
+              mat-raised-button
+              #tooltip="matTooltip"
+              matTooltip="Delete"
+              (click)="deleteState(state.id!)"
+              class="bg-red-500 text-white px-2 py-1 rounded h-7 w-8 hover:cursor-pointer"
+              src="/icons/remove.png"
+              alt=""
+            />
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

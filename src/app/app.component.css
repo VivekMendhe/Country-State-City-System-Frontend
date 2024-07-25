@@ -1,0 +1,22 @@
+.example-sidenav {
+  width: 250px;
+  background-color: #1e3a8a; /* Dark blue */
+  color: white;
+  border-radius: 0;
+}
+
+.example-sidenav a {
+  color: white;
+}
+
+.example-sidenav a:hover {
+  color: #93c5fd; /* Light blue */
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 64px); /* Adjust based on header height */
+}
+
+header {
+  height: 64px;
+}

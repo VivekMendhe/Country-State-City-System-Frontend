@@ -1,0 +1,75 @@
+<div class="w-1/2 container mx-auto mt-4">
+  <h2 class="text-2xl mb-4">Cities</h2>
+  <!-- <a routerLink="/cities/new" class="bg-blue-500 text-white px-4 py-2 rounded"
+    >Add City</a
+  > -->
+
+  <img
+    mat-raised-button
+    #tooltip="matTooltip"
+    matTooltip="Add City"
+    routerLink="/cities/new"
+    class="bg-blue-500 text-white px-4 py-2 rounded w-15 h-10 hover:cursor-pointer"
+    src="/icons/plus.png"
+    alt="add icon"
+  />
+  <table class="min-w-full mt-4 bg-white">
+    <thead>
+      <tr>
+        <th class="py-2">ID</th>
+        <th class="py-2">City</th>
+        <th class="py-2">State</th>
+        <th class="py-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (city of cities; track city.id; let idx = $index) {
+      <tr [ngClass]="{ 'bg-yellow-100': city.stateId === selectedStateId }">
+        <td class="border px-4 py-2 w-1/6">{{ idx + 1 }}</td>
+        <td class="border px-4 py-2 w-1/4">{{ city.city }}</td>
+        <!-- <td class="border px-4 py-2 w-1/4">{{ city.stateId }}</td> -->
+        <!-- <td class="border px-4 py-2 w-1/4">{{ getStateName(city.stateId) }}</td> -->
+
+        <td class="border px-4 py-2 w-1/4">
+          <a [routerLink]="['/states']" class="">
+            {{ getStateName(city.stateId) }}
+          </a>
+        </td>
+        <td class="border px-4 py-2 w-1/4">
+          <div class="flex justify-center gap-x-3">
+            <!-- <a
+              [routerLink]="['/cities', city.id, 'edit']"
+              class="bg-green-500 text-white px-2 py-1 rounded"
+              >Edit</a
+            > -->
+            <img
+              mat-raised-button
+              #tooltip="matTooltip"
+              matTooltip="Edit"
+              src="/icons/edit.png"
+              alt=""
+              [routerLink]="['/cities', city.id, 'edit']"
+              class="bg-green-500 text-white px-2 py-1 rounded w-7 h-7 hover:cursor-pointer"
+            />
+            <!-- <button
+              (click)="deleteCity(city.id!)"
+              class="bg-red-500 text-white px-2 py-1 rounded"
+            >
+              Delete
+            </button> -->
+            <img
+              mat-raised-button
+              #tooltip="matTooltip"
+              matTooltip="Delete"
+              (click)="deleteCity(city.id!)"
+              class="bg-red-500 text-white px-2 py-1 rounded h-7 w-8 hover:cursor-pointer"
+              src="/icons/remove.png"
+              alt=""
+            />
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

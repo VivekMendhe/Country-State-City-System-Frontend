@@ -1,0 +1,102 @@
+<div class="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
+  <h2 class="text-2xl font-semibold mb-6 text-gray-900">
+    {{ isEditMode ? "Edit" : "Add" }} State
+  </h2>
+
+  <form (ngSubmit)="saveState()" class="space-y-4">
+    <div class="mb-4">
+      <label for="state" class="block text-sm font-medium text-gray-700"
+        >State Name</label
+      >
+      <input
+        type="text"
+        id="state"
+        [(ngModel)]="state.state"
+        name="state"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter state name"
+        required
+      />
+      @if (validationError.state) {
+      <div class="text-red-500 text-sm mt-1">
+        {{ validationError.state }}
+      </div>
+      }
+    </div>
+    <div class="mb-4">
+      <label for="state" class="block text-sm font-medium text-gray-700"
+        >State Population</label
+      >
+      <input
+        type="text"
+        id="population"
+        [(ngModel)]="state.population"
+        name="population"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter state population"
+        required
+      />
+      @if (validationError.population) {
+      <div class="text-red-500 text-sm mt-1">
+        {{ validationError.population }}
+      </div>
+      }
+    </div>
+
+    <div class="mb-4">
+      <label for="countryId" class="block text-sm font-medium text-gray-700"
+        >Country</label
+      >
+      <select
+        id="countryId"
+        [(ngModel)]="state.countryId"
+        name="countryId"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        required
+      >
+        @for (country of countries; track $index) {
+        <option [value]="country.id">
+          {{ country.country }}
+        </option>
+        }
+      </select>
+    </div>
+
+    <div class="flex justify-end">
+      <!-- <button
+        type="submit"
+        class="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        {{ isEditMode ? "Update" : "Save" }}
+      </button> -->
+
+      @if (isEditMode) {
+      <button
+        mat-raised-button
+        #tooltip="matTooltip"
+        matTooltip="update"
+        type="submit"
+        class=""
+      >
+        <span
+          class="material-symbols-outlined bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          system_update_alt
+        </span>
+      </button>
+      } @else {
+      <button
+        mat-raised-button
+        #tooltip="matTooltip"
+        matTooltip="save"
+        type="submit"
+      >
+        <span
+          class="material-symbols-outlined bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >label</span
+        >
+      </button>
+      }
+    </div>
+  </form>
+</div>
